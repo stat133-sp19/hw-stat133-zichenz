@@ -1,30 +1,29 @@
 ---
-title: "workout01-zichen-zhao"
+title: "Workout 1"
+author: "Zichen Zhao"
 output: github_document
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r}
+library(dplyr)
 ```
 
-## GitHub Documents
-
-This is an R Markdown format used for publishing markdown documents to GitHub. When you click the **Knit** button all R code chunks are run and a markdown file (.md) suitable for publishing to GitHub is generated.
-
-## Including Code
-
-You can include R code in the document as follows:
-
-```{r cars}
-summary(cars)
+```{r out.width='80%', echo = FALSE, fig.align='center'}
+knitr::include_graphics('../images/gsw-shot-charts.png')
+```
+#2PT
+```{r}
+two_pt <- arrange(summarise(group_by(combined, name), total = sum(shot_type == "2PT Field Goal"), made = sum(shot_type =='2PT Field Goal' & shot_made_flag == 'shot_yes'), perc_made = made/total),desc(perc_made))
+two_pt
+```
+#3PT
+```{r}
+three_pt <- arrange(summarise(group_by(combined, name), total = sum(shot_type == "3PT Field Goal"), made = sum(shot_type =='3PT Field Goal' & shot_made_flag == 'shot_yes'), perc_made = made/total),desc(perc_made))
+three_pt
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+#Effective Shooting
+```{r}
+effective_shooting <- arrange(summarise(group_by(combined, name), total = length(shot_type), made = sum(shot_made_flag == 'shot_yes'), perc_made = made/total),desc(perc_made))
+effective_shooting
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
