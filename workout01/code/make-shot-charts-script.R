@@ -1,6 +1,6 @@
 # title: Make Shot Charts Script
 # description: Codes to produce different charts
-# input: klay, curry, kevin, andre, draymond
+# input: nba-court.jpg, klay, curry, kevin, andre, draymond
 # output: pdf of each player's shot chart, pdf and png of gsw's short chart
 
 

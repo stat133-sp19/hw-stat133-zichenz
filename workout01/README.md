@@ -1,20 +1,2 @@
-# Stat 133, Spring 2019
-
-Private Repository for HW assignments of Stat 133 (Spring 2019)
-
-- Name: Zichen Zhao
-- Github username: zichenz
-- Email: zzc [at] berkeley.edu
-- Lab section: 111
-- GSI: Yulun Wu
-
------
-
-## Assignments
-
-- [Demo](demo)
-- [Workout 1](workout1)
-- Workout 2
-- Workout 3
-
-
+This directory is for the stat 133 workout 01. 
+It is about the Golden State Warriors and five of its players shooting data.
