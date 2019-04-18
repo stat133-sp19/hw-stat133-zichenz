@@ -1,0 +1,12 @@
+name: workout02
+title: workout02
+username:
+account: zichenz
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 874432
+bundleId: 2020582
+url: https://zichenz.shinyapps.io/workout02/
+when: 1555569751.29409
+asMultiple: FALSE
+asStatic: FALSE
