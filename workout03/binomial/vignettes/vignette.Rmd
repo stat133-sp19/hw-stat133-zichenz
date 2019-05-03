@@ -31,7 +31,7 @@ Definition of binomial distribution: the discrete probability distribution
 of the k number of successes in a sequence of n independent experiments, each with 
 its own outcomes of success or failure.
 
-##Number of ways to achieve success
+##Binomial Choose
 The first step of calculating binomial probability is to know the success(k) and 
 trials(n) of your probability.
 

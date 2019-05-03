@@ -1,13 +1,16 @@
 source("R/private_checker_functions.R")
 source("R/private_auxiliary_functions.R")
 
-#' @title
-#' @description
-#' @param n
-#' @param k
-#' @return
+#' @title bin_choose
+#' @description calculate the number of combinations in which k successes can occur in n trials.
+#' @param n number of trials
+#' @param k number of successes
+#' @return a numerical value of the number of combinations if inputs are valid
 #' @export
 #' @example
+#' bin_choose(n = 5, k = 3)
+#' bin_choose(n = 10, k = 1:6)
+#' bin_choose(8, 3:5)
 bin_choose <- function(n, k){
   if (any(k>n)){
     stop("k cannot be greater than n")
@@ -19,14 +22,16 @@ bin_choose <- function(n, k){
 }
 
 
-#' @title
-#' @description
-#' @param success
-#' @param trials
-#' @param prob
-#' @return
+#' @title bin_probability
+#' @description calculates the probability in which k successes can occur in n trials.
+#' @param success number of successes
+#' @param trials total number of trials
+#' @param prob probability of success in each trial
+#' @return a numerical value of the probability in which k successes can occur in n trials.
 #' @export
 #' @example
+#' bin_probability(3:5, 10, 0.3)
+#' bin_probability(success = 6, trials = 9, prob = 0.7)
 bin_probability <- function(success, trials, prob){
   if(check_trials(trials)!=TRUE){
     stop('invalid trials value')
@@ -42,31 +47,35 @@ bin_probability <- function(success, trials, prob){
   }
 }
 
-#' @title
-#' @description
-#' @param trials
-#' @param prob
-#' @return
+#' @title bin_distribution
+#' @description constructs a table of successes and probability.
+#' @param trials total number of trials
+#' @param prob probability of success in each trial
+#' @return an object of both 'bindis' and 'data.frame' that displays the success and its corresponding probability
 #' @export
 #' @example
+#' bin_distribution(100, 0.48)
+#' bin_distribution(5, 0.3)
 bin_distribution <- function(trials, prob){
   x <- data.frame(success = 0:trials, probability = bin_probability(0:trials, trials, prob))
   class(x) <- c('bindis', 'data.frame')
   return(x)
 }
 
-#' @export
+#' @export a bar plot of successes and its probability
 plot.bindis <- function(x){
   barplot(x$probability, names.arg = x$success, xlab = 'successes', ylab = 'probability')
 }
 
-#' @title
-#' @description
-#' @param trials
-#' @param prob
-#' @return
+#' @title bin_cumulative
+#' @description constructs a table of successes, probability, and cumulative probability.
+#' @param trials total number of trials
+#' @param prob probability of success in each trial
+#' @return an object of both 'bincum' and 'data.frame' that has columns of success, probability, and cumulative probability
 #' @export
 #' @example
+#' bin_cumulative(trials = 100, prob = 0.53)
+#' bin_cumulative(5, 0.4)
 bin_cumulative <- function(trials, prob){
   x <- bin_distribution(trials, prob)
   x$cumulative = cumsum(x$probability)
@@ -74,19 +83,21 @@ bin_cumulative <- function(trials, prob){
   return(x)
 }
 
-#' @export
+#' @export a line and point plot of successes and its cumulative probability
 plot.bincum <- function(data){
   plot(x=data$success, y=data$cumulative, type = 'o', xlab = 'successes', ylab = 'probability')
 }
 
 
-#' @title
-#' @description
-#' @param trials
-#' @param prob
+#' @title bin_variable
+#' @description creates the binomial random variable object
+#' @param trials total number of trials
+#' @param prob probability of success in each trial
 #' @return an object of class 'binvar'
 #' @export
 #' @example
+#' bin_variable(50, 0.3)
+#' bin_variable(trials = 100, prob = 0.36)
 bin_variable <- function(trials, prob){
   if(check_trials(trials)!=TRUE){
     stop('invalid trials value')
@@ -101,7 +112,7 @@ bin_variable <- function(trials, prob){
   }
 }
 
-#' @export
+#' @export summary summary values
 print.binvar <- function(x){
   cat("\"Binomial variable\"")
   cat("\n")
@@ -120,7 +131,7 @@ summary.binvar <- function(x){
   return(y)
 }
 
-#' @export
+#' @export summary summary values
 print.summary.binvar <- function(x){
   cat("\"Summary Binomial\"")
   cat("\n")
@@ -136,13 +147,15 @@ print.summary.binvar <- function(x){
   cat("\n- kurtosis: ", x$kurt)
 }
 
-#' @title
-#' @description
-#' @param trials
-#' @param prob
-#' @return
+#' @title bin_mean
+#' @description calculates the mean of the binomial distribution
+#' @param trials total number of trials
+#' @param prob probability of success
+#' @return the mean of the binomial distribution
 #' @export
 #' @example
+#' bin_mean(10, 0.5)
+#' bin_mean(trials = 5, prob = 0.6)
 bin_mean <- function(trials, prob){
   if(check_trials(trials)!=TRUE){
     stop('invalid trials value')
@@ -155,13 +168,15 @@ bin_mean <- function(trials, prob){
   }
 }
 
-#' @title
-#' @description
-#' @param trials
-#' @param prob
-#' @return
+#' @title bin_variance
+#' @description calculates the variance of the binomial distribution
+#' @param trials total number of trials
+#' @param prob probability of success
+#' @return the variance of the binomial distribution
 #' @export
 #' @example
+#' bin_variance(10, 0.5)
+#' bin_variance(trials = 5, prob = 0.6)
 bin_variance <- function(trials, prob){
   if(check_trials(trials)!=TRUE){
     stop('invalid trials value')
@@ -174,13 +189,15 @@ bin_variance <- function(trials, prob){
   }
 }
 
-#' @title
-#' @description
-#' @param trials
-#' @param prob
-#' @return
+#' @title bin_mode
+#' @description calculates the mode of the binomial distribution
+#' @param trials total number of trials
+#' @param prob probability of success
+#' @return the mode of the binomial distribution
 #' @export
 #' @example
+#' bin_mode(10, 0.5)
+#' bin_mode(trials = 5, prob = 0.6)
 bin_mode <- function(trials, prob){
   if(check_trials(trials)!=TRUE){
     stop('invalid trials value')
@@ -193,13 +210,15 @@ bin_mode <- function(trials, prob){
   }
 }
 
-#' @title
-#' @description
-#' @param trials
-#' @param prob
-#' @return
+#' @title bin_skewness
+#' @description calculates the skewness of the binomial distribution
+#' @param trials total number of trials
+#' @param prob probability of success
+#' @return the skewness of the binomial distribution
 #' @export
 #' @example
+#' bin_skewness(10, 0.5)
+#' bin_skewness(trials = 5, prob = 0.6)
 bin_skewness <- function(trials, prob){
   if(check_trials(trials)!=TRUE){
     stop('invalid trials value')
@@ -212,13 +231,15 @@ bin_skewness <- function(trials, prob){
   }
 }
 
-#' @title
-#' @description
-#' @param trials
-#' @param prob
-#' @return
+#' @title bin_kurtosis
+#' @description calculates the kurtosis of the binomial distribution
+#' @param trials total number of trials
+#' @param prob probability of success
+#' @return the kurtosis of the binomial distribution
 #' @export
 #' @example
+#' bin_kurtosis(10, 0.5)
+#' bin_kurtosis(trials = 5, prob = 0.6)
 bin_kurtosis <- function(trials, prob){
   if(check_trials(trials)!=TRUE){
     stop('invalid trials value')

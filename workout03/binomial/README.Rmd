@@ -1,0 +1,73 @@
+---
+title: "Binomial Package README"
+author: "Zichen Zhao"
+date: "5/3/2019"
+output: 
+  github_document:
+    html_preview: false
+---
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+##Overview
+
+`'binomial'` is a minimal package to implement functions for calculating probabilities 
+of a Binomial random variable, as well as other relevant calculations such as 
+probability distribution, expected value, variance, kurtosis, skewness, etc.
+
+* `bin_mean()` calculates the mean of the binomial distribution
+* `bin_variance()` calculates the mean of the binomial distribution
+* `bin_mode()` calculates the mean of the binomial distribution
+* `bin_skewness()` calculates the mean of the binomial distribution
+* `bin_kurtosis()` calculates the mean of the binomial distribution
+* `bin_choose()` calculates the number of combinations in which k successes can occur 
+in n trials.
+* `bin_probability()` calculates the probability in which k successes can occur in n trials.
+* `bin_distribution()` constructs a table of successes and probability.
+* `bin_cumulative()` constructs a table of successes, probability, and cumulative probability.
+* `bin_variable()` creates the binomial random variable object
+* `plot()` plot the specific graph according to the class of the object
+* `summary()` summarizes the probability of distribution
+
+##Motivation
+
+This package has been developed to illustrate some calculations in binomial random variable.
+
+##Installation
+
+Install the development version from GitHub via the package `"devtools"`:
+
+```r
+# development version from GitHub:
+#install.packages("devtools") 
+# install "binomial" (without vignettes)
+devtools::install_github("zichenz/binomial")
+# install "cointoss" (with vignettes)
+devtools::install_github("ichenz/binomial", build_vignettes = TRUE)
+```
+##Usage
+```{r}
+library(binomial)
+#Calculating probability of binomial random variable
+bin_choose(n = 5, k = 3)
+bin_probability(3, 5, 0.5)
+
+#Creating a distribution and plotting
+dis1 <- bin_distribution(5, 0.5)
+plot(dis1)
+
+#Creating a cumulative table and plotting
+dis2 <- bin_cumulative(5, 0.5)
+plot(dis2)
+
+#Creating a binomial random variable object and its related functions
+bin1 <- bin_variable(trials = 5, p = 0.5)
+bin1
+binsum1 <- summary(bin1)
+binsum1
+```
