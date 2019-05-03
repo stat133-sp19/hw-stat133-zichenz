@@ -62,7 +62,7 @@ bin_distribution <- function(trials, prob){
   return(x)
 }
 
-#' @export a bar plot of successes and its probability
+#' @export
 plot.bindis <- function(x){
   barplot(x$probability, names.arg = x$success, xlab = 'successes', ylab = 'probability')
 }
@@ -83,7 +83,7 @@ bin_cumulative <- function(trials, prob){
   return(x)
 }
 
-#' @export a line and point plot of successes and its cumulative probability
+#' @export
 plot.bincum <- function(data){
   plot(x=data$success, y=data$cumulative, type = 'o', xlab = 'successes', ylab = 'probability')
 }
@@ -112,7 +112,7 @@ bin_variable <- function(trials, prob){
   }
 }
 
-#' @export summary summary values
+#' @export
 print.binvar <- function(x){
   cat("\"Binomial variable\"")
   cat("\n")
@@ -131,7 +131,7 @@ summary.binvar <- function(x){
   return(y)
 }
 
-#' @export summary summary values
+#' @export
 print.summary.binvar <- function(x){
   cat("\"Summary Binomial\"")
   cat("\n")

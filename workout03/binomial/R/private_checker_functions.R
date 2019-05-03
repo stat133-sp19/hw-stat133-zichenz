@@ -1,6 +1,6 @@
 #private function that test if an input prob is a valid probability value
 check_prob <- function(prob){
-  if (0>prob & prob>1){
+  if (prob<0 | prob>1){
     stop("\n'prob' has to be a number between 0 and 1")
   }
   else{
@@ -10,7 +10,7 @@ check_prob <- function(prob){
 
 #private function that test if an input trials is a valid value for number of trials
 check_trials <- function(trials){
-  if(trials<0 | is.integer(trials) == TRUE){
+  if(trials<0 | floor(trials)!=trials){
     stop("\n'trials' has to be a non-negative integer")
   }
   else{
